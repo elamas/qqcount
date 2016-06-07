@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="lib/jquery/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+		</script>
+		<title>QQCount</title>
+		<style type="text/css">
+			.container
+			{
+				/*
+			    width:50%;
+			    height:50%;
+			    background-color:#eee;
+			    margin:0px auto;
+			    top:50%;
+			    */
+
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				/*width: 50%;*/
+				height: 50%;
+				margin: auto;		
+				/*background-color:#eee;*/
+				text-align: center;	    
+			}
+			
+			html, body {height:100%}			
+		</style>
+	</head>
+	<body style="height: 100%;">
+		<script type="text/javascript">
+			var fontSize;
+			var number = 0;
+			var utterance = new SpeechSynthesisUtterance();
+			utterance.lang = 'es-ES';
+			$(document).ready(function() {
+				var screenWidth = screen.width;
+				console.log("screenWidth: " + screenWidth);
+				fontSize = Math.round(screenWidth / 5);
+				console.log("fontSize: " + fontSize);
+				
+				//$('.container').html('<font style="font-size:' + fontSize + 'px">11</font>');
+				paintNumber();
+			});
+			
+			function paintNumber() {
+				number++;
+				console.log("number: " + number);
+				if (number<=100) {
+					$('.container').html('<font style="font-size:' + fontSize + 'px">' + number + '</font>');
+					utterance.text = number;
+					window.speechSynthesis.speak(utterance);
+					//paintNumber(++number);
+					setTimeout(paintNumber, 2000);
+				}
+			}
+			
+		</script>
+		<!--
+		<div style="border: #000 1px solid; margin:0px auto; width:50%; height:50%;">11</div>
+		-->			
+		<!--	
+		<div style="border: #000 1px solid; width: 50%; height: 50%;">11</div>
+		-->
+		<div class="container">
+		    adsf
+		</div>		
+	</body>
+</html>
